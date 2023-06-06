@@ -1,5 +1,4 @@
-#set working directory
-setwd()
+
 
 library("ibmWatsonStudioLib")
 wslib <- access_project_or_space()
@@ -8,7 +7,7 @@ print("watsonlib loaded")
 library(nnet)
 
 # get environment variables for input and output file names
-input_file <- Sys.getenv('input_file_name','./batchscoringassets/input_data.csv') 
+input_file <- Sys.getenv('input_file_name','input_data.csv') 
 output_file <- Sys.getenv('output_file_name','output_data.csv')
 print(input_file)
 
@@ -21,7 +20,7 @@ head(df)
 
 # load data prep script if needed
 
-source("/userfs/batchscoringassets/preprocess_data.r")
+source("preprocess_data.r")
 
 # call the function from the script
 df_processed <- preprocess_data(df, "Species")
@@ -30,7 +29,7 @@ head(df_processed)
 
 # load the model
 
-load_model <- readRDS("/userfs/batchscoringassets/model.rds")
+load_model <- readRDS("model.rds")
 
 load_model
 
